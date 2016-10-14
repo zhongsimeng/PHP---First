@@ -170,11 +170,206 @@ PHP脚本在服务器上执行，然后向 浏览器发送回纯HTML结果。
   
 ###PHP变量规则
 
-  * 变量以$符号开头   
-  * 变量名称必须以字母后下划线开头 
-  * 变量名称不能以数字开头 
-  * 变量名称只能保护数字字符和下划线（A-z,0-9以及_）
-  * 变量名称对 大小写敏感（$y与$Y是两个不同的变量）
+  * 变量以$符号开头
+  * 变量名称必须以字母后下划线开头
+  * 变量名称不能以数字开头
+  * 变量名称只能保护数字字符和下划线（A-z,0-9以及_)
+  * 变量名称对 大小写敏感（$y与$Y是两个不同的变量）
   
  >PHP变量名称对 大小写敏感
+ 
+###创建PHP变量
+  PHP没有创建变量的命令。
+  
+  变量会在收藏为其赋值时被创建。
+  
+  实例：
+  
+      <?php
+      $txt="Hello world!";
+      $x=5;
+      $y=10.5;
+      ?>
+
+  >注释：如果您为变量赋的值是文本，请用引号包围该值。
+  
+###PHP是一门类型松散的语言
+  不必告诉PHP变量的数据类型，PHP根据变量的值，自动把变量转换为正确的数据类型。
+  
+###PHP变量的作用域
+  在PHP中，可以在脚本的任意位置对变量进行声明。
+  
+  变量的作用域指的是变量能够被引用/使用的那部分脚本。
+  
+  PHP有三种不同的变量作用域：
+  
+    * local(局部)
+    * global(全局)
+    * static(静态)
+    
+###Local和Global作用域
+
+  函数之外声明的变量拥有Global作用域，只能在函数以外进行访问。
+  
+  函数内部声明的变量 拥有Local作用域，只能在函数内部进行访问。
+  
+  实例：
+  
+      <?php
+      $x=5; // 全局作用域
+
+      function myTest() {
+      $y=10; // 局部作用域
+      echo "<p>测试函数内部的变量：</p>";
+      echo "变量 x 是：$x";
+      echo "<br>";
+      echo "变量 y 是：$x";
+      } 
+
+      myTest();
+
+      echo "<p>测试函数之外的变量：</p>";
+      echo "变量 x 是：$x";
+      echo "<br>";
+      echo "变量 y 是：$x";
+      ?>
+        
+  >在上例中，有两个变量 $x 和 $y，以及一个函数 myTest()。$x 是全局变量，因为它是在函数之外声明的，而 $y 是局部变量，因为它是在函数内声明的。
+  
+  >如果我们在 myTest() 函数内部输出两个变量的值，$y 会输出在本地声明的值，但是无法 $x 的值，因为它在函数之外创建。
+  
+  >然后，如果在 myTest() 函数之外输出两个变量的值，那么会输出 $x 的值，但是不会输出 $y 的值，因为它是局部变量，并且在 myTest() 内部创建。
+  
+  >注释：您可以在不同的函数中创建名称相同的局部变量，因为局部变量只能被在其中创建它的函数识别。
+  
+###PHP global关键词
+  global关键词拥有访问函数内的全局变量。
+  
+  要做到这一点，请在（函数内部）变量前面使用 global 关键词：
+  
+  实例：
+  
+      <?php
+      $x=5;
+      $y=10;
+
+      function myTest() {
+      global $x,$y;
+      $y=$x+$y;
+      }
+
+      myTest();
+      echo $y; // 输出 15
+      ?>
+
+  >PHP 同时在名为 $GLOBALS[index] 的数组中存储了所有的全局变量。下标存有变量名。这个数组在函数内也可以访问，并能够用于直接更新全局变量。
+  
+  上面的例子可以这样重写：
+  
+  实例
+
+      <?php
+      $x=5;
+      $y=10;
+
+      function myTest() {
+        $GLOBALS['y']=$GLOBALS['x']+$GLOBALS['y'];
+      } 
+
+      myTest();
+      echo $y; // 输出 15
+      ?>
+      
+###PHP static关键词
+  通常，当函数完成/执行后，会删除所有的变量。不过，有时我需要不删除某个局部变量。
+  
+  要完成这一点，要在首次声明变量时使用static关键词：
+  
+  实例：
+  
+      <?php
+
+      function myTest() {
+        static $x=0;
+        echo $x;
+        $x++;
+      }
+
+      myTest();
+      myTest();
+      myTest();
+
+      ?>
+      
+  > 然后，每当函数被调用时，这个变量所存储的信息 都是函数最后一次被调用时所包含的信息。
+
+  > 改变量仍然是函数的局部变量。
+  
+   
+##PHP Echo/Print语句
+##在PHP中，有两种基本的输出方法：echo和print
+
+###PHP echo和print语句
+
+  * echo-能够输出一个以上的字符串
+  * print-只能输出一个字符串，并始终返回1
+  
+  > 提示：echo比print稍快，因为它不返回任何值。
+  
+###PHP echo语句
+  echo是一个语言结构，有无括号均可使用：echo或echo().
+  
+####显示字符串
+  下面的例子展示如何用 echo 命令来显示不同的字符串（同时请注意字符串中能包含 HTML 标记）：
+  
+      <?php
+      echo "<h2>PHP is fun!</h2>";
+      echo "Hello world!<br>";
+      echo "I'm about to learn PHP!<br>";
+      echo "This", " string", " was", " made", " with multiple parameters.";
+      ?>
+      
+####显示变量
+  下面的例子展示如何用 echo 命令来显示字符串和变量：
+  
+      <?php
+      $txt1="Learn PHP";
+      $txt2="W3School.com.cn";
+      $cars=array("Volvo","BMW","SAAB");
+
+      echo $txt1;
+      echo "<br>";
+      echo "Study PHP at $txt2";
+      echo "My car is a {$cars[0]}";
+      ?>
+
+###PHP print语句
+  print也是语言结构，有无括号均可使用：print或print()。
+  
+####显示字符串
+  下面的例子展示如何用 print 命令来显示不同的字符串（同时请注意字符串中能包含 HTML 标记）：
+  
+      <?php
+      print "<h2>PHP is fun!</h2>";
+      print "Hello world!<br>";
+      print "I'm about to learn PHP!";
+      ?>
+      
+####显示变量
+ 下面的例子展示如何用 print 命令来显示字符串和变量：
+ 
+     <?php
+      $txt1="Learn PHP";
+      $txt2="W3School.com.cn";
+      $cars=array("Volvo","BMW","SAAB");
+
+      print $txt1;
+      print "<br>";
+      print "Study PHP at $txt2";
+      print "My car is a {$cars[0]}";
+      ?>
+ 
+  
+  
+  
   
