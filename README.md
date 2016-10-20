@@ -369,7 +369,166 @@ PHP脚本在服务器上执行，然后向 浏览器发送回纯HTML结果。
       print "My car is a {$cars[0]}";
       ?>
  
+
+##PHP 数据类型
+  字符串、整数、浮点数、逻辑、数组、对象、NULL
   
+###PHP字符串
+  字符串是字符序列，比如"Hello World!"
   
+  字符串可以是引号内的任何文本。你可以使用单引号或双引号。
+  
+  实例
+  
+      <?php 
+      $x = "Hello world!";
+      echo $x;
+      echo "<br>"; 
+      $x = 'Hello world!';
+      echo $x;
+      ?> 
+      
+###PHP整数
+  整数是没有小数的数字。
+  
+  整数规则：
+  
+    * 整数必须有至少一个数字（0-9）
+    * 整数不能包含逗号或者空格
+    * 整数不能有小数点
+    * 整数征服均可
+    * 可以用三种格式规定整数：十进制、十六进制、（前缀是0x）或八进制（前缀是0）
+    
+  实例：
+  
+      <?php 
+      $x = 5985;
+      var_dump($x);
+      echo "<br>"; 
+      $x = -345; // 负数
+      var_dump($x);
+      echo "<br>"; 
+      $x = 0x8C; // 十六进制数
+      var_dump($x);
+      echo "<br>";
+      $x = 047; // 八进制数
+      var_dump($x);
+      ?>
+  
+###PHP浮点数
+  浮点数是有或者指数形式的数字。
+  
+  实例：
+
+      <?php 
+      $x = 10.365;
+      var_dump($x);
+      echo "<br>"; 
+      $x = 2.4e3;
+      var_dump($x);
+      echo "<br>"; 
+      $x = 8E-5;
+      var_dump($x);
+      ?>
+      
+###PHP逻辑
+  逻辑是true或false。
+  
+  逻辑常用于条件测试。
+  
+      $x=true;
+      $y=false;
+ 
+###PHP数组
+  数组在一个变量中存储多个值。
+  
+  实例：
+  
+      <?php 
+      $cars=array("Volvo","BMW","SAAB");
+      var_dump($cars);
+      ?>
+      
+###PHP对象
+  对象是存储数据和有关如何处理数据的信息的数据类型。
+  
+  在PHP中，必须明确地声明对象。
+  
+  手续我们必须声明对象的类。对此，我们使用class关键词。类是包含属性和方法的结构。
+  
+  然后我们在对象类中定义数据类型，然后在该类的实例中使用此数据类型：
+  
+  实例
+  
+      <?php
+      class Car
+      {
+        var $color;
+        function Car($color="green") {
+          $this->color = $color;
+        }
+        function what_color() {
+          return $this->color;
+        }
+      }
+      ?>
+      
+###PHP NULL值
+  特殊的NULL值表示变量无值。 NULL是数据 类型NULL唯一可能的值。
+  
+  NULL值表示变量是否为空。也用于区分空字符串与空值数据库。
+  
+  可以通过把值设置为NULL，将变量清空。
+  
+  实例
+  
+      <?php
+      $x="Hello world!";
+      $x=null;
+      var_dump($x);
+      ?>
+      
+##PHP 字符串函数
+  字符串是字符序列。比如"Hello world!"
+  
+###PHP 字符串函数
+  
+###PHP strlen() 函数
+  strlen()函数返回字符串的长度，以字符计。
+  
+  实例：
+  
+      <?php
+      echo strlen("Hello world!");
+      ?>
+  >strlen()常用于循环和其他函数，在确定字符串何时结束很重要。
+  
+###PHP strpos()  函数
+  strpos()函数 用于检索字符串内指定的字符或文本。
+  
+  如果找到匹配，则会返回首个匹配的字符位置。如果未找到匹配，则返回FALSE.
+  
+  实例：
+  
+      <?php
+      echo strpos("Hello world!","world");
+      ?>
+      
+  >以上字符串"world"的位置是6，是6不是7的理由 是，字符串中首字符的位置是0而不是1.
+  
+###完整的PHP String参考手册
+
+##PHP常量
+  常量类似变量， 但是常量一旦被定义就无法更改或者撤销定义。
+  
+###PHP 常量
+  常量是单个值得标识符（名称），在脚本中 无法改变改值。
+  
+  有效的常量名以字符或下划线开头（常量名称前面没有$符 号）。
+  
+  >与变量不同，常量贯穿真个脚本是自动全局的。
+  
+###设置PHP常量
+  如需设置常量，请使用define()函数-它使用三个 参数：
   
   
