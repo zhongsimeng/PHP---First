@@ -723,3 +723,251 @@ PHP脚本在服务器上执行，然后向 浏览器发送回纯HTML结果。
       var_dump($x <> $y);
       var_dump($x !== $y);
       ?>
+
+##PHP if...else...elseif语句
+  条件语句用于基于不同条件执行不同的动作
+  
+###PHP条件语句
+  在您编写代码时，经常会希望为不同的决定执行不同的动作。您可以在代码中使用条件语句来实现这一点。
+  
+  在 PHP 中，我们可以使用以下条件语句：
+  
+  *if 语句 - 如果指定条件为真，则执行代码
+  *if...else 语句 - 如果条件为 true，则执行代码；如果条件为 false，则执行另一端代码
+  *if...elseif....else 语句 - 选择若干段代码块之一来执行
+  *switch 语句 - 语句多个代码块之一来执行
+  
+###PHP if语句
+  if语句用于在指定条件为true时执行代码。
+  
+  语法：
+  
+      if (条件) {
+        当条件为 true 时执行的代码;
+      }
+      
+  实例：
+  
+      <?php
+      $t=date("H");
+
+      if ($t<"20") {
+        echo "Have a good day!";
+      }
+      ?>
+      
+###PHP if..else语句
+  请使用if...else语句在条件为true时执行代码，在条件为false时执行另一段代码。
+  
+  语法：
+
+      if (条件) {
+        条件为 true 时执行的代码;
+      } else {
+        条件为 false 时执行的代码;
+      }
+      
+  实例
+
+      <?php
+      $t=date("H");
+
+      if ($t<"20") {
+        echo "Have a good day!";
+      } else {
+        echo "Have a good night!";
+      }
+      ?>
+      
+###PHP if...elseif...else 语句
+  请使用if...elseif...else 语句来选择若干代码块之一来执行。
+  
+  语法：
+  
+      if (条件) {
+        条件为 true 时执行的代码;
+      } elseif (condition) {
+        条件为 true 时执行的代码;
+      } else {
+        条件为 false 时执行的代码;
+      }
+      
+  实例：
+  
+      <?php
+      $t=date("H");
+
+      if ($t<"10") {
+        echo "Have a good morning!";
+      } elseif ($t<"20") {
+        echo "Have a good day!";
+      } else {
+        echo "Have a good night!";
+      }
+      ?>
+      
+##PHP  Switch语句
+  switch语句用于基于不同条件执行不同动作。
+  
+###Switch语句
+  如果你希望有选择地执行若干代码块之一，请使用 Switch语句。
+  
+  使用 Switch语句可以避免冗长的if...elseif...else代码块
+  
+  语法 ：
+  
+      switch (expression)
+      {
+      case label1:
+        code to be executed if expression = label1;
+        break;  
+      case label2:
+        code to be executed if expression = label2;
+        break;
+      default:
+        code to be executed
+        if expression is different 
+        from both label1 and label2;
+      }
+      
+  工作原理：
+  
+    1.对表达式（通常是变量）进行一次计算
+    
+    2.把表达式的值与结构中case的值进行比较
+    
+    3.如果存在匹配，则执行与case关联的代码
+    
+    4.代码执行后，break语句阻止代码跳入下一个case中继续执行
+    
+    5.如果没有case为真，则使用default语句
+    
+  实例：
+  
+      <?php
+      switch ($x)
+      {
+      case 1:
+        echo "Number 1";
+        break;
+      case 2:
+        echo "Number 2";
+        break;
+      case 3:
+        echo "Number 3";
+        break;
+      default:
+        echo "No number between 1 and 3";
+      }
+      ?>
+
+##PHP while循环
+  PHP while循环在指定条件为true时执行代码块
+  
+###PHP 循环
+  在你编写代码时 ，经常需要反复运行同一代码块。我们可以使用循环来执行这样的任务，而不是在脚本中添加若干几乎相等的代码行。
+  
+  在PHP中，我们有以下循环语句：
+    
+    *while-只要指定条件为真，则循环代码块
+    *do...while-先执行一次代码块，然后只要指定条件为真怎重复循环
+    *for-循环代码块指定次数
+    *foreach- 遍历数组中的每个元素并循环代码块
+    
+###PHP while循环
+  只要指定条件为真， while循环就会执行 代码块
+  
+  语法：
+  
+      while (条件为真) {
+        要执行的代码;
+      }
+      
+  实例：
+  
+      <?php 
+      $x=1; 
+
+      while($x<=5) {
+        echo "这个数字是：$x <br>";
+        $x++;
+      } 
+      ?>
+      
+###PHP do...while循环
+  do...while循环首先 会执行一次代码块，然后检查条件，如果指定条件为真，怎重复循环。
+  
+  语法：
+  
+      do {
+        要执行的代码;
+      } while (条件为真);
+      
+  实例：
+  
+      <?php 
+      $x=1; 
+
+      do {
+        echo "这个数字是：$x <br>";
+        $x++;
+      } while ($x<=5);
+      ?>
+      
+  >请注意，do while循环只在执行循环 内的语句之后才对条件进行测试。这意味着do while循环至少会执行一次语句，即使条件测试在第一次就失败了。
+  
+  实例：
+    下面的例子把 $x 设置为 6，然后运行循环，随后对条件进行检查：
+  
+        <?php 
+        $x=6;
+
+        do {
+          echo "这个数字是：$x <br>";
+          $x++;
+        } while ($x<=5);
+        ?>
+      
+##PHP for循环
+  PHP for循环执行代码块指定的次数
+  
+###PHP for循环
+  如果你已经提前确定脚本运行的次数，可以使用for循环
+  
+  语法：
+  
+      for (init counter; test counter; increment counter) {
+        code to be executed;
+      }
+      
+  参数：
+  
+  *init counter：初始化循环计数器的值
+  *text counter：评估每个循环迭代。如果值为true，继续循环。如果它的值为false，循环结束。
+  *increment counter： 增加循环计数器的值
+  
+  实例：
+    下面的例子显示了从 0 到 10 的数字：  
+    
+        <?php 
+        for ($x=0; $x<=10; $x++) {
+          echo "数字是：$x <br>";
+        } 
+        ?>
+        
+###PHP foreach 循环
+  foreach循环只适用于数组，并用于遍历数组中的每个键/值对。
+  
+  每进行一次循环迭代，当前数组元素的值就会被赋值给$value 变量，并且数组指针会逐一地移动，直到到达最后一个数组元素。
+  
+  下面的例子演示的循环将输出给定数组（$colors）的值：
+  
+  实例：
+  
+      <?php 
+      $colors = array("red","green","blue","yellow"); 
+
+      foreach ($colors as $value) {
+        echo "$value <br>";
+      }
+      ?>
