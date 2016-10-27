@@ -1080,4 +1080,257 @@ PHP的真正力量来自它的函数：它拥有超过1000个内建的函数。
     ?>
       
       
-      
+###PHP数组
+数组能够在单独的变量名中存储一个或多个值
+
+实例：
+
+    <?php
+    $cars=array("Volvo","BMW","SAAB");
+    echo "I like " . $cars[0] . ", " . $cars[1] . " and " . $cars[2] . ".";
+    ?>
+
+###什么是数组
+数组是特殊的变量，它可以同时保存一个以上的值。
+
+如果你有一个项目列表，在单个变量中存储这些内容是这样的
+
+$cars1="Volvo";
+$cars2="BMW";
+$cars3="SAAB";
+
+不过，假如您希望对变量进行遍历并找出特定的那个值？或者如果您需要存储 300 个汽车品牌，而不是 3 个呢？
+
+解决方法是创建数组！
+
+数组能够在单一变量名中存储许多值，并且您能够通过引用下标号来访问某个值。
+
+###在PHP中创建数组
+在PHP中，array()函数用于创建数组：
+
+    array()
+    
+在PHP中，有三种数组类型：
+
+* 索引数组-带有数字索引的数组
+* 关联数组-带有指定键的数组
+* 多维数组-包含一个或多个数组的数组
+
+###PHP索引数组
+有两种创建索引数组的方法：
+
+索引是自动分配的（索引从 0 开始）：
+
+    $cars=array("Volvo","BMW","SAAB");
+    
+或者也可以手动分配索引：
+
+    $cars[0]="Volvo";
+    $cars[1]="BMW";
+    $cars[2]="SAAB";
+    
+下面的例子创建名为 $cars 的索引数组，为其分配三个元素，然后输出包含数组值的一段文本：
+
+实例
+
+    <?php
+    $cars=array("Volvo","BMW","SAAB");
+    echo "I like " . $cars[0] . ", " . $cars[1] . " and " . $cars[2] . ".";
+    ?>
+    
+###获得数组的长度-count()函数
+count()函数用于返回数组的长度（元素数）：
+
+实例
+
+    <?php
+    $cars=array("Volvo","BMW","SAAB");
+    echo count($cars);
+    ?>
+    
+###遍历索引数组
+如需遍历并输出索引数组的所有值，你可以使用for循环，如：
+
+实例：
+
+    <?php
+    $cars=array("Volvo","BMW","SAAB");
+    $arrlength=count($cars);
+
+    for($x=0;$x<$arrlength;$x++) {
+      echo $cars[$x];
+      echo "<br>";
+    }
+    ?>
+    
+###PHP关联数组
+关联数组是使用你分配给数组的指定键的数组。
+
+有两种创建关联数组的方法：
+
+    $age=array("Peter"=>"35","Ben"=>"37","Joe"=>"43");
+    
+或者：
+
+    $age['Peter']="35";
+    $age['Ben']="37";
+    $age['Joe']="43";
+    
+随后可以在脚本中使用指定键：
+
+实例
+
+    <?php
+    $age=array("Bill"=>"35","Steve"=>"37","Peter"=>"43");
+    echo "Peter is " . $age['Peter'] . " years old.";
+    ?>
+    
+###遍历关联数组
+如需遍历并输出关联数组的所有值，您可以使用foreach循环，如：
+
+实例
+
+    <?php
+    $age=array("Bill"=>"35","Steve"=>"37","Peter"=>"43");
+
+    foreach($age as $x=>$x_value){
+      echo "Key=".$x. ",Value=".$x_value;
+      echo "<br>";
+    }
+    ?>
+    
+###多维数组
+
+##PHP数组排序
+数组中的元素能够以字母或者数字顺序进行升序或降序排列。
+
+###PHP-数组的排序函数
+有一下几种PHP数组排序函数：
+
+* sort() - 以升序对数组排序
+* rsort() - 以降序对数组排序
+* asort() - 根据值，以升序对关联数组进行排序
+* ksort() - 根据键，以升序对关联数组进行排序
+* arsort() - 根据值，以降序对关联数组进行排序
+* krsort() - 根据键，以降序对关联数组进行排序
+
+###对数组进行升序排序-sort()
+下面的例子按照字母升序对数组 $cars 中的元素进行排序：
+
+实例
+
+    <?php
+    $cars=array("Volvo","BMW","SAAB");
+    sort($cars);
+    ?>
+
+下面的例子按照数字升序对数组 $numbers 中的元素进行排序：
+
+实例
+
+    <?php
+    $numbers=array(3,5,1,22,11);
+    sort($numbers);
+    ?>
+    
+###对数组进行降序排序-rsort()
+下面的例子按照字母降序对数组 $cars 中的元素进行排序：
+
+实例
+
+    <?php
+    $cars=array("Volvo","BMW","SAAB");
+    rsort($cars);
+    ?>
+    
+下面的例子按照数字降序对数组 $numbers 中的元素进行排序：
+
+实例
+
+    <?php
+    $numbers=array(3,5,1,22,11);
+    rsort($numbers);
+    ?>
+    
+###根据值对数组进行升序排序-asort()
+下面的例子根据值对关联数组进行升序排序：
+
+实例
+
+    <?php
+    $age=array("Bill"=>"35","Steve"=>"37","Peter"=>"43");
+    asort($age);
+    ?>
+
+###根据键对数组进行升序排序 - ksort()
+下面的例子根据键对关联数组进行升序排序：
+
+实例
+
+    <?php
+    $age=array("Bill"=>"35","Steve"=>"37","Peter"=>"43");
+    ksort($age);
+    ?>
+       
+###根据值对数组进行降序排序 - arsort()
+下面的例子根据值对关联数组进行降序排序：
+
+实例
+
+    <?php
+    $age=array("Bill"=>"35","Steve"=>"37","Peter"=>"43");
+    arsort($age);
+    ?>
+
+###根据键对数组进行降序排序 - krsort()
+下面的例子根据键对关联数组进行降序排序：
+
+实例
+
+    <?php
+    $age=array("Bill"=>"35","Steve"=>"37","Peter"=>"43");
+    krsort($age);
+    ?>
+    
+    
+##PHP全局变量-超全局变量
+超全局简历在PHP 4.1.0 中引入，是在全部作用域中始终可用的内置变量。
+
+###PHP全局变量-超全局变量
+PHP 中的许多预定义变量都是“超全局的”，这意味着它们在一个脚本的全部作用域中都可用。在函数或方法中无需执行 global $variable; 就可以访问它们。
+
+这些超全局变量是：
+
+* $GLOBALS
+* $_SERVER
+* $_REQUEST
+* $_POST
+* $_GET
+* $_FILES
+* $_ENV
+* $_COOKIE
+* $_SESSION
+    
+###$GLOBALS-引用全局作用域中可用的全部变量
+$GLOBALS这种全局变量用于在PHP脚本中的任意位置访问全局变量（从函数或方法中均可）。
+
+PHP在名为$GLOBALS[index]的数组中存储了所以全局变量。变量的名字就是数组的键。
+
+下面的例子展示了如何使用超级全局变量 $GLOBALS：
+
+实例
+
+    <?php 
+    $x = 75; 
+    $y = 25;
+
+    function addition() { 
+      $GLOBALS['z'] = $GLOBALS['x'] + $GLOBALS['y']; 
+    }
+
+    addition(); 
+    echo $z; 
+    ?>
+
+在上面的例子中，由于 z 是 $GLOBALS 数组中的变量，因此在函数之外也可以访问它。
+    
